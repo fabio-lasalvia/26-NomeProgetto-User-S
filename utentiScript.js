@@ -16,7 +16,7 @@ function caricaPagina(pagina) {
 /////////////////////////////////////////
 const spinner = document.querySelector('#spinner')
 const tBody = document.querySelector('#tBody')
-const searchbar = document.querySelector('#campoCerca')
+const searchbars = document.querySelectorAll('.campoCerca')
 const filtro = document.querySelector('#filterSelect')
 let utenti = []
 
@@ -101,8 +101,8 @@ function caricaRiga(user) {
 ///////////////////////////////
 /////GESTIONE RICERCA DATI/////
 ///////////////////////////////
-function cercaUtenti() {
-    let utenteCercato = searchbar.value.trim().toLowerCase()
+function cercaUtenti(input) {
+    let utenteCercato = input.target.value.trim().toLowerCase()
     const filtroSelezionato = filtro.value
 
     const utentiFiltrati = utenti.filter(user => {
@@ -111,4 +111,6 @@ function cercaUtenti() {
     mostraUtenti(utentiFiltrati)
 }
 
-searchbar.addEventListener('keyup', cercaUtenti)
+searchbars.forEach(input => {
+    input.addEventListener('keyup', cercaUtenti);
+});
